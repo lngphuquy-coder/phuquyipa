@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ONYXZ SYSTEM">
+    <meta name="theme-color" content="#05060a">
+    <title>ONYXZ SYSTEM - Siêu Cấp Keygen, Live Countdown & Reset Hub</title>
+
+    <!-- Font & Icons Chất lượng cao -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --sat: env(safe-area-inset-top, 0px);
+            --sab: env(safe-area-inset-bottom, 0px);
+            --sal: env(safe-area-inset-left, 0px);
+            --sar: env(safe-area-inset-right, 0px);
+
+            --bg-dark: #05060a;
+            --bg-card: rgba(14, 17, 26, 0.9);
+            --neon-blue: #00f2fe;
+            --neon-purple: #7928ca;
+            --neon-pink: #ff0080;
+            --neon-green: #00df89;
+            --neon-red: #ff3366;
+            --neon-amber: #ffaa00;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-size: 16px;
+        }
+
+        /* ================= 1. SPLASH SCREEN (SÓNG BIỂN 5S + CHỮ + 6 CON CHIM) ================= */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background: radial-gradient(circle at 50% 25%, #0d1a2d 0%, #030407 100%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s ease;
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        #splashWaveCanvas {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .splash-sky {
+            position: absolute;
+            top: 18%;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .bird {
+            position: absolute;
+            width: 38px;
+            height: 28px;
+            fill: #00f2fe;
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.9));
+            transform-origin: center;
+            animation: birdFly 4.2s linear infinite;
+        }
+
+        @keyframes birdFly {
+            0% { transform: translateX(-100px) translateY(0px) scale(0.7); }
+            50% { transform: translateX(50vw) translateY(-30px) scale(1.05); }
+            100% { transform: translateX(115vw) translateY(15px) scale(0.8); }
+        }
+
+        .bird svg path {
+            animation: wingFlap 0.3s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+
+        @keyframes wingFlap {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(0.35); }
+        }
+
+        .splash-title-wrap {
+            position: relative;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            animation: slideInFromLeft 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-120vw); opacity: 0; }
+            70% { transform: translateX(12px); opacity: 1; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .splash-title {
+            font-size: clamp(32px, 8vw, 44px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #ffffff 10%, #00f2fe 55%, #7928ca 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.7));
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .splash-sub {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            color: #94a3b8;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .splash-loader-bar {
+            position: absolute;
+            bottom: calc(40px + var(--sab));
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 80%;
+            max-width: 320px;
+        }
+
+        .loader-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .loader-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00f2fe, #ff0080, #7928ca);
+            border-radius: 12px;
+            box-shadow: 0 0 15px #00f2fe;
+            animation: fill5s 5s linear forwards;
+        }
+
+        @keyframes fill5s {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .loader-text {
+            font-size: 13px;
+            color: #00f2fe;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* ================= 2. MÀN HÌNH CHÍNH (FULL MÀN HÌNH ĐIỆN THOẠI) ================= */
+        #app-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: #05060a;
+            overflow: hidden;
+            padding-top: var(--sat);
+            padding-bottom: var(--sab);
+        }
+
+        #bgCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* DÒNG BIỂN NƯỚC UỐN LƯỢN & CHIẾC THUYỀN CHẠY TỪ TRÁI SANG PHẢI Ở NỀN APP */
+        .ocean-background-layer {
+            position: absolute;
+            bottom: calc(65px + var(--sab));
+            left: 0;
+            width: 100%;
+            height: 140px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #dashboardWaveCanvas {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Con thuyền lướt sóng từ bên trái sang bên phải */
+        .neon-ship {
+            position: absolute;
+            bottom: 38px;
+            left: -120px;
+            width: 85px;
+            height: 48px;
+            z-index: 2;
+            animation: shipSailing 14s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.8));
+        }
+
+        @keyframes shipSailing {
+            0% {
+                transform: translateX(-120px) translateY(0px) rotate(2deg);
+            }
+            25% {
+                transform: translateX(30vw) translateY(-8px) rotate(-3deg);
+            }
+            50% {
+                transform: translateX(60vw) translateY(4px) rotate(2deg);
+            }
+            75% {
+                transform: translateX(85vw) translateY(-6px) rotate(-2deg);
+            }
+            100% {
+                transform: translateX(calc(100vw + 120px)) translateY(0px) rotate(1deg);
+            }
+        }
+
+        .ambient-birds-layer {
+            position: absolute;
+            top: calc(var(--sat) + 55px);
+            left: 0;
+            width: 100%;
+            height: 180px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Header App chuẩn cao cấp */
+        .app-header {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(8, 10, 16, 0.85);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo i {
+            font-size: 24px;
+            color: var(--neon-blue);
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+
+        .brand-text {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ffffff, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .server-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 223, 137, 0.12);
+            border: 1px solid rgba(0, 223, 137, 0.4);
+            padding: 6px 12px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--neon-green);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+
+        /* Vùng nội dung cuộn mượt mà trên iPhone */
+        .tab-content-area {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 16px 16px 95px 16px;
+            max-width: 680px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphism Card Siêu cấp */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 242, 254, 0.22);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00f2fe, #ff0080, #7928ca);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-title i {
+            color: var(--neon-blue);
+            font-size: 18px;
+        }
+
+        /* Chọn thời hạn */
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .duration-grid .btn-pill:last-child {
+            grid-column: span 2;
+        }
+
+        .btn-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text-dim);
+            padding: 14px 10px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-pill.active {
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.28), rgba(121, 40, 202, 0.45));
+            border-color: var(--neon-blue);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.45);
+            transform: translateY(-2px);
+        }
+
+        /* Form ô nhập chuẩn Mobile */
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .input-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            height: 52px;
+            padding: 0 16px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-box:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
+        }
+
+        .input-hint {
+            font-size: 11px;
+            color: #8292a8;
+            line-height: 1.4;
+        }
+
+        /* Nút Tạo Key Siêu To */
+        .btn-glow {
+            width: 100%;
+            height: 56px;
+            border-radius: 16px;
+            border: none;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7928ca 100%);
+            color: #05060a;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 6px 25px rgba(0, 242, 254, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-glow:active {
+            transform: scale(0.97);
+            filter: brightness(1.25);
+        }
+
+        /* Kết quả hiển thị 1 Key */
+        .single-key-box {
+            display: none;
+            background: rgba(0, 242, 254, 0.08);
+            border: 1.5px dashed var(--neon-blue);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 18px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .key-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(15px, 4.5vw, 18px);
+            font-weight: 800;
+            color: var(--neon-blue);
+            letter-spacing: 1.5px;
+            word-break: break-all;
+        }
+
+        .btn-copy-small {
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            border: none;
+            color: #000;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Kết quả hiển thị nhiều Key (Batch) */
+        .batch-key-box {
+            display: none;
+            margin-top: 18px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .batch-textarea {
+            width: 100%;
+            height: 160px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 14px;
+            color: var(--neon-green);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            resize: none;
+            outline: none;
+            white-space: pre;
+        }
+
+        .btn-copy-all {
+            width: 100%;
+            height: 50px;
+            margin-top: 12px;
+            border-radius: 14px;
+            border: 1px solid var(--neon-blue);
+            background: rgba(0, 242, 254, 0.16);
+            color: #fff;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+        }
+
+        /* Thẻ danh sách Key (Tab Lịch sử & Kiểm tra) */
+        .key-item-card {
+            background: rgba(16, 20, 32, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .key-item-card.revoked {
+            opacity: 0.5;
+            border-color: rgba(255, 51, 102, 0.4);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .key-item-card.paused {
+            border-color: rgba(255, 170, 0, 0.5);
+            background: rgba(255, 170, 0, 0.06);
+        }
+
+        .key-item-card.expired {
+            opacity: 0.6;
+            border-color: rgba(255, 51, 102, 0.5);
+        }
+
+        .key-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .badge-status {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-active {
+            background: rgba(0, 223, 137, 0.16);
+            color: var(--neon-green);
+            border: 1px solid rgba(0, 223, 137, 0.5);
+        }
+
+        .badge-paused {
+            background: rgba(255, 170, 0, 0.2);
+            color: var(--neon-amber);
+            border: 1px solid rgba(255, 170, 0, 0.6);
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+        }
+
+        .badge-full {
+            background: rgba(255, 170, 0, 0.16);
+            color: var(--neon-amber);
+            border: 1px solid rgba(255, 170, 0, 0.5);
+        }
+
+        .badge-revoked, .badge-expired {
+            background: rgba(255, 51, 102, 0.16);
+            color: var(--neon-red);
+            border: 1px solid rgba(255, 51, 102, 0.5);
+        }
+
+        /* HỘP ĐẾM NGƯỢC THỜI GIAN TRỰC TIẾP (COUNTDOWN) */
+        .countdown-timer-box {
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .countdown-title {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .countdown-digits {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--neon-blue);
+            letter-spacing: 1px;
+        }
+
+        .countdown-digits.paused {
+            color: var(--neon-amber);
+        }
+
+        .countdown-digits.expired {
+            color: var(--neon-red);
+        }
+
+        .key-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+
+        .key-details span b {
+            color: #fff;
+        }
+
+        .device-progress-wrap {
+            margin-bottom: 14px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+            border-radius: 6px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-bar-fill.full {
+            background: var(--neon-amber);
+        }
+
+        .key-item-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-item {
+            flex: 1;
+            min-width: 110px;
+            height: 42px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
+        }
+
+        .btn-copy-item {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .btn-test-activate {
+            background: rgba(0, 242, 254, 0.15);
+            color: var(--neon-blue);
+            border-color: rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-reset-action {
+            background: rgba(255, 170, 0, 0.15);
+            color: var(--neon-amber);
+            border-color: rgba(255, 170, 0, 0.45);
+        }
+
+        .btn-delete-item {
+            background: rgba(255, 51, 102, 0.15);
+            color: var(--neon-red);
+            border-color: rgba(255, 51, 102, 0.4);
+        }
+
+        /* Bottom Nav Cực Đẹp */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(68px + var(--sab));
+            padding-bottom: var(--sab);
+            background: rgba(8, 10, 15, 0.94);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 20%;
+        }
+
+        .nav-item i {
+            font-size: 19px;
+            transition: transform 0.2s;
+        }
+
+        .nav-item.active {
+            color: var(--neon-blue);
+        }
+
+        .nav-item.active i {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+
+        /* Toast Popup */
+        #toast {
+            position: fixed;
+            bottom: calc(85px + var(--sab));
+            left: 50%;
+            transform: translateX(-50%) translateY(60px);
+            background: rgba(14, 18, 28, 0.96);
+            border: 1.5px solid var(--neon-blue);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 242, 254, 0.4);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 35px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 999999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ================= CỔNG NHẬP KEY XÁC THỰC ADMIN ================= */
+        #admin-gate-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background: radial-gradient(circle at 50% 30%, #0d1e36 0%, #04060a 80%);
+            z-index: 100000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        #admin-gate-screen.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .gate-card {
+            background: rgba(14, 18, 30, 0.92);
+            border: 1.5px solid var(--neon-blue);
+            border-radius: 24px;
+            padding: 28px 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 242, 254, 0.35);
+            backdrop-filter: blur(25px);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .gate-logo {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(0,242,254,0.2), rgba(121,40,202,0.3));
+            border: 2px solid var(--neon-blue);
+            border-radius: 20px;
+            margin: 0 auto 16px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+
+        .gate-logo i {
+            font-size: 34px;
+            color: var(--neon-blue);
+        }
+
+        .gate-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .gate-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 22px;
+            line-height: 1.4;
+        }
+
+        .gate-input-wrap {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .gate-input {
+            width: 100%;
+            height: 54px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            padding: 0 65px 0 16px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 800;
+            outline: none;
+            text-align: center;
+            text-transform: uppercase;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .gate-input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-paste-gate {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 242, 254, 0.2);
+            border: 1px solid var(--neon-blue);
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .gate-error {
+            display: none;
+            color: var(--neon-red);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .gate-tip {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .gate-tip b {
+            color: var(--neon-green);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= CỔNG BẢO MẬT: NHẬP MASTER KEY ADMIN ================= -->
+    <div id="admin-gate-screen">
+        <div class="gate-card">
+            <div class="gate-logo">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="gate-title">ONYXZ SECURITY GATE</div>
+            <div class="gate-desc">Nhập mã <b>Master Key Admin</b> của bạn để mở khóa hệ thống tạo key:</div>
+
+            <div class="gate-input-wrap">
+                <input type="text" id="adminMasterKeyInput" class="gate-input" placeholder="NHẬP MASTER KEY...">
+                <button class="btn-paste-gate" id="btnPasteGate"><i class="fa-regular fa-paste"></i> Dán</button>
+            </div>
+
+            <div class="gate-error" id="gateErrorMsg">
+                <i class="fa-solid fa-triangle-exclamation"></i> Master Key không đúng!
+            </div>
+
+            <button class="btn-glow" id="btnUnlockAdmin">
+                <i class="fa-solid fa-key"></i>
+                <span>XÁC THỰC & MỞ HỆ THỐNG</span>
+            </button>
+
+            <div class="gate-tip">
+                Mã mặc định của bạn: <b>ONYXZ-ADMIN-VIP</b>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 1. MÀN HÌNH CHÀO (SPLASH SCREEN 5 GIÂY) ================= -->
+    <div id="splash-screen" style="display:none;">
+        <div class="splash-sky">
+            <div class="bird" style="top: 15%; animation-delay: 0.0s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 45%; animation-delay: 0.5s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 25%; animation-delay: 1.0s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 60%; animation-delay: 1.4s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 35%; animation-delay: 1.8s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 50%; animation-delay: 2.2s;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+        </div>
+
+        <div class="splash-title-wrap">
+            <div class="splash-title">
+                <i class="fa-solid fa-bolt-lightning" style="color: #00f2fe;"></i>
+                <span>ONYXZ SYSTEM</span>
+            </div>
+            <div class="splash-sub">License Engine & Live Sync Hub</div>
+        </div>
+
+        <canvas id="splashWaveCanvas"></canvas>
+
+        <div class="splash-loader-bar">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+            <div class="loader-text" id="loaderCount">STARTING 0%</div>
+        </div>
+    </div>
+
+    <!-- ================= 2. MÀN HÌNH CHÍNH (FULL MÀN HÌNH ĐIỆN THOẠI) ================= -->
+    <div id="app-container">
+        <!-- Canvas Nền hạt sao chuyển động -->
+        <canvas id="bgCanvas"></canvas>
+
+        <!-- DÒNG BIỂN NƯỚC UỐN LƯỢN & CON THUYỀN CHẠY LIÊN TỤC TRÊN NỀN BACKEND -->
+        <div class="ocean-background-layer">
+            <canvas id="dashboardWaveCanvas"></canvas>
+            
+            <!-- Con thuyền Neon Cyberpunk chạy từ trái sang phải, tới cuối lại chạy tiếp -->
+            <div class="neon-ship">
+                <svg viewBox="0 0 100 60" width="85" height="50">
+                    <!-- Thân thuyền -->
+                    <path d="M10 38 L30 52 L80 52 L95 38 Z" fill="#0c121e" stroke="#00f2fe" stroke-width="2.5" />
+                    <!-- Cabin thuyền -->
+                    <polygon points="35,38 45,26 65,26 72,38" fill="#141c2e" stroke="#ff0080" stroke-width="2" />
+                    <!-- Đèn chiếu & Cột cờ -->
+                    <line x1="55" y1="26" x2="55" y2="10" stroke="#00f2fe" stroke-width="2.5" />
+                    <polygon points="55,10 70,16 55,22" fill="#00df89" opacity="0.85" />
+                    <!-- Ánh sáng phản chiếu mặt nước -->
+                    <ellipse cx="50" cy="54" rx="35" ry="3" fill="#00f2fe" opacity="0.5" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- 6 con chim tiếp tục bay lượn ở bầu trời phía trên -->
+        <div class="ambient-birds-layer">
+            <div class="bird" style="top: 20%; animation-duration: 7s; opacity: 0.4;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 50%; animation-duration: 8.5s; animation-delay: 1.2s; opacity: 0.35;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 30%; animation-duration: 6.8s; animation-delay: 2.5s; opacity: 0.45;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 70%; animation-duration: 9s; animation-delay: 3.2s; opacity: 0.3;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 40%; animation-duration: 7.5s; animation-delay: 4.5s; opacity: 0.4;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+            <div class="bird" style="top: 60%; animation-duration: 8s; animation-delay: 5.5s; opacity: 0.35;"><svg viewBox="0 0 24 24"><path d="M21 5c-1.5 2-4 3-7 2-3 1-5 4-8 4-2 0-4-1-6-2 3-1 6-1 8-3 2-2 5-3 8-3 2 0 4 1 5 2z"/></svg></div>
+        </div>
+
+        <!-- Header -->
+        <div class="app-header">
+            <div class="brand-logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="brand-text">ONYXZ SYSTEM</span>
+            </div>
+            <div class="server-badge">
+                <div class="pulse-dot"></div>
+                <span id="liveBadgeText">LIVE SYSTEM</span>
+            </div>
+        </div>
+
+        <!-- Khung Nội Dung Cuộn -->
+        <div class="tab-content-area">
+
+            <!-- ================= TAB 1: TẠO KEY ================= -->
+            <div class="tab-panel active" id="tab-create">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>1. Chọn Thời Hạn Key</span>
+                    </div>
+                    <div class="duration-grid">
+                        <div class="btn-pill" data-duration="1_hour" data-name="1 Giờ"><i class="fa-solid fa-stopwatch"></i> 1 Giờ</div>
+                        <div class="btn-pill active" data-duration="1_day" data-name="1 Ngày"><i class="fa-solid fa-calendar-day"></i> 1 Ngày</div>
+                        <div class="btn-pill" data-duration="1_week" data-name="1 Tuần"><i class="fa-solid fa-calendar-week"></i> 1 Tuần</div>
+                        <div class="btn-pill" data-duration="1_month" data-name="1 Tháng"><i class="fa-solid fa-calendar"></i> 1 Tháng</div>
+                        <div class="btn-pill" data-duration="lifetime" data-name="Vĩnh Viễn">👑 Vĩnh Viễn</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                                <span>Số Thiết Bị Khách</span>
+                            </label>
+                            <input type="number" id="inputMaxDevices" class="input-box" value="1" min="1" max="999">
+                            <span class="input-hint">Để 1: 1 máy nhập xong thì máy khác bị chặn.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Số Key / Lần</span>
+                            </label>
+                            <input type="number" id="inputKeyCount" class="input-box" value="1" min="1" max="50">
+                            <span class="input-hint">Tạo nhanh 1 đến tối đa 50 key.</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-glow" id="btnGenerateKey">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <span>TẠO KEY NGAY</span>
+                    </button>
+
+                    <div class="single-key-box" id="singleKeyBox">
+                        <span class="key-text" id="singleKeyText">ONYXZ-XXXXXXXXXX</span>
+                        <button class="btn-copy-small" id="btnCopySingle">
+                            <i class="fa-regular fa-copy"></i> Sao chép
+                        </button>
+                    </div>
+
+                    <div class="batch-key-box" id="batchKeyBox">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:13px; color:var(--neon-green); font-weight:800;">
+                            <span><i class="fa-solid fa-circle-check"></i> ĐÃ TẠO (<span id="batchCountBadge">0</span> KEY)</span>
+                        </div>
+                        <textarea class="batch-textarea" id="batchKeyText" readonly></textarea>
+                        <button class="btn-copy-all" id="btnCopyBatch">
+                            <i class="fa-solid fa-clipboard-list"></i> SAO CHÉP TẤT CẢ KEY
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 2: LỊCH SỬ TẠO KEY ================= -->
+            <div class="tab-panel" id="tab-history">
+                <div class="card">
+                    <div class="card-title" style="justify-content:space-between;">
+                        <div><i class="fa-solid fa-clock-rotate-left"></i> <span>Lịch Sử Tạo Key</span></div>
+                        <span style="font-size:12px; color:var(--text-dim);" id="historyTotalText">Tổng: 0 key</span>
+                    </div>
+
+                    <div id="historyListContainer"></div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 3: KIỂM TRA KEY & COUNTDOWN LIVE ================= -->
+            <div class="tab-panel" id="tab-check">
+                <div class="card">
+                    <div class="card-title" style="justify-content:space-between;">
+                        <div><i class="fa-solid fa-satellite-dish"></i> <span>Kiểm Tra Key & Thời Gian</span></div>
+                        <span class="badge-status badge-active">COUNTDOWN LIVE</span>
+                    </div>
+
+                    <div style="margin-bottom:14px;">
+                        <input type="text" id="searchKeyInput" class="input-box" placeholder="🔍 Tìm kiếm mã key..." style="font-size:14px;">
+                    </div>
+
+                    <div id="checkListContainer"></div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 4: RESET KEY (ĐÓNG BĂNG THỜI GIAN) ================= -->
+            <div class="tab-panel" id="tab-reset">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fa-solid fa-rotate-left" style="color:var(--neon-amber);"></i>
+                        <span>Reset & Đóng Băng Thời Gian Key</span>
+                    </div>
+
+                    <p style="font-size:13px; color:var(--text-dim); margin-bottom:14px; line-height:1.5;">
+                        <b>Chức năng Reset:</b> Khi khách đang dùng (ví dụ còn 34 phút), nhập key vào đây để <b>dừng lại ngay phút 34</b> và xóa danh sách máy cũ. Khi nào khách nhập lại sẽ tiếp tục đếm tiếp từ phút 34!
+                    </p>
+
+                    <div class="form-group" style="margin-bottom:14px;">
+                        <label class="form-label">
+                            <i class="fa-solid fa-key"></i>
+                            <span>Nhập Mã Key Cần Reset:</span>
+                        </label>
+                        <input type="text" id="resetKeyInput" class="input-box" placeholder="Ví dụ: ONYXZ-XXXXXXXXXX" style="font-family:'JetBrains Mono'; text-transform:uppercase;">
+                    </div>
+
+                    <button class="btn-glow" id="btnExecuteReset" style="background:linear-gradient(135deg, #ffaa00, #ff5500); box-shadow:0 6px 25px rgba(255,170,0,0.4);">
+                        <i class="fa-solid fa-pause"></i>
+                        <span>RESET / ĐÓNG BĂNG KEY NÀY</span>
+                    </button>
+
+                    <div id="resetResultBox" style="display:none; margin-top:16px; background:rgba(255,170,0,0.1); border:1.5px solid var(--neon-amber); border-radius:14px; padding:16px;">
+                        <div style="font-size:14px; font-weight:800; color:var(--neon-amber); margin-bottom:6px;" id="resetResultTitle">
+                            <i class="fa-solid fa-circle-check"></i> ĐÃ RESET THÀNH CÔNG!
+                        </div>
+                        <div style="font-size:13px; color:#fff; line-height:1.5;" id="resetResultMsg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 5: KẾT NỐI MENU API ================= -->
+            <div class="tab-panel" id="tab-api">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fa-solid fa-code"></i>
+                        <span>Cổng Kết Nối Menu API</span>
+                    </div>
+
+                    <p style="font-size:13px; color:var(--text-dim); margin-bottom:12px; line-height:1.5;">
+                        Dán địa chỉ máy chủ (Domain / Hosting) của bạn vào ô dưới để tự động sinh mã kết nối:
+                    </p>
+
+                    <div style="margin-bottom:12px;">
+                        <input type="text" id="customDomainInput" class="input-box" placeholder="Ví dụ: https://your-server.com" style="font-size:14px;" oninput="updateApiUrlBox()">
+                    </div>
+
+                    <div class="api-url-box" id="apiUrlBox" style="background:rgba(0,0,0,0.6); border:1px solid var(--neon-blue); border-radius:12px; padding:12px; font-family:'JetBrains Mono'; font-size:13px; color:var(--neon-blue); word-break:break-all; margin-bottom:12px;">
+                        Đang tạo link API...
+                    </div>
+
+                    <button class="btn-copy-all" id="btnCopyApiUrl" style="margin-bottom:18px;">
+                        <i class="fa-solid fa-link"></i> SAO CHÉP ĐƯỜNG LINK API NÀY
+                    </button>
+
+                    <div class="card-title" style="font-size:14px;">
+                        <i class="fa-solid fa-laptop-code"></i> <span>Mã Nguồn Mẫu Cho Menu</span>
+                    </div>
+
+                    <div style="display:flex; gap:8px; margin-bottom:10px;">
+                        <button class="btn-item btn-test-activate" onclick="showMenuCode('lua')">Roblox Lua</button>
+                        <button class="btn-item btn-copy-item" onclick="showMenuCode('cpp')">C++ / ImGui</button>
+                    </div>
+
+                    <pre class="code-container" id="menuCodeSnippet" style="background:#020305; border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:14px; font-family:'JetBrains Mono'; font-size:12px; color:#a5b4fc; overflow-x:auto; white-space:pre; line-height:1.6; margin-bottom:14px;"></pre>
+
+                    <button class="btn-copy-all" onclick="copyMenuCode()">
+                        <i class="fa-solid fa-copy"></i> SAO CHÉP CODE NÀY VÀO MENU
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= BOTTOM NAVIGATION BAR (5 TABS) ================= -->
+        <div class="bottom-nav">
+            <div class="nav-item active" data-tab="tab-create">
+                <i class="fa-solid fa-key"></i>
+                <span>Tạo Key</span>
+            </div>
+            <div class="nav-item" data-tab="tab-history">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Lịch Sử</span>
+            </div>
+            <div class="nav-item" data-tab="tab-check">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Kiểm Tra</span>
+            </div>
+            <div class="nav-item" data-tab="tab-reset">
+                <i class="fa-solid fa-rotate-left" style="color:var(--neon-amber);"></i>
+                <span>Reset Key</span>
+            </div>
+            <div class="nav-item" data-tab="tab-api">
+                <i class="fa-solid fa-plug"></i>
+                <span>Menu API</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Thông báo -->
+    <div id="toast"><i class="fa-solid fa-circle-check" style="color:var(--neon-green)"></i> <span id="toastMsg">Thành công!</span></div>
+
+    <script>
+        /* ================= 1. DỮ LIỆU & STORAGE ================= */
+        const STORAGE_KEY = 'onyxz_keys_db_v4';
+        let keyDatabase = [];
+
+        function getDurationSeconds(duration) {
+            switch(duration) {
+                case '1_hour': return 3600;
+                case '1_day': return 86400;
+                case '1_week': return 604800;
+                case '1_month': return 2592000;
+                case 'lifetime': return -1;
+                default: return 86400;
+            }
+        }
+
+        function formatDuration(sec) {
+            if (sec <= 0) return "00:00:00";
+            const days = Math.floor(sec / 86400);
+            const hours = Math.floor((sec % 86400) / 3600);
+            const minutes = Math.floor((sec % 3600) / 60);
+            const seconds = sec % 60;
+
+            const pad = (n) => n.toString().padStart(2, '0');
+            if (days > 0) {
+                return `${days} ngày ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            }
+            return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        }
+
+        function loadLocalData() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) keyDatabase = JSON.parse(saved);
+            } catch (e) {
+                keyDatabase = [];
+            }
+        }
+
+        function saveLocalData() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(keyDatabase));
+            } catch (e) {}
+            renderHistoryTab();
+            renderCheckTab();
+        }
+
+        /* ================= 2. THUẬT TOÁN TẠO KEY CHUẨN ================= */
+        function generateSingleOnyxzKey() {
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const digits = "0123456789";
+            let picked = [];
+
+            for (let i = 0; i < 7; i++) {
+                picked.push(letters[Math.floor(Math.random() * letters.length)]);
+            }
+            for (let i = 0; i < 3; i++) {
+                picked.push(digits[Math.floor(Math.random() * digits.length)]);
+            }
+            for (let i = picked.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [picked[i], picked[j]] = [picked[j], picked[i]];
+            }
+            return "ONYXZ-" + picked.join("");
+        }
+
+        /* ================= 3. HOẠT HỌA SÓNG BIỂN SPLASH SCREEN (5S) ================= */
+        const splashWaveCanvas = document.getElementById('splashWaveCanvas');
+        const splashWaveCtx = splashWaveCanvas.getContext('2d');
+        let splashWaveStep = 0;
+
+        function resizeSplashWave() {
+            splashWaveCanvas.width = window.innerWidth;
+            splashWaveCanvas.height = window.innerHeight * 0.5;
+        }
+        window.addEventListener('resize', resizeSplashWave);
+        resizeSplashWave();
+
+        function drawSplashWave() {
+            splashWaveCtx.clearRect(0, 0, splashWaveCanvas.width, splashWaveCanvas.height);
+            splashWaveStep += 0.045;
+
+            splashWaveCtx.beginPath();
+            splashWaveCtx.moveTo(0, splashWaveCanvas.height);
+            for (let x = 0; x <= splashWaveCanvas.width; x += 3) {
+                const y = Math.sin(x * 0.012 + splashWaveStep) * 25 + Math.cos(x * 0.02 + splashWaveStep * 0.8) * 15 + 80;
+                splashWaveCtx.lineTo(x, y);
+            }
+            splashWaveCtx.lineTo(splashWaveCanvas.width, splashWaveCanvas.height);
+            splashWaveCtx.closePath();
+            splashWaveCtx.fillStyle = 'rgba(0, 242, 254, 0.32)';
+            splashWaveCtx.fill();
+
+            splashWaveCtx.beginPath();
+            splashWaveCtx.moveTo(0, splashWaveCanvas.height);
+            for (let x = 0; x <= splashWaveCanvas.width; x += 3) {
+                const y = Math.sin(x * 0.015 - splashWaveStep * 0.7) * 28 + Math.cos(x * 0.009 + splashWaveStep) * 18 + 105;
+                splashWaveCtx.lineTo(x, y);
+            }
+            splashWaveCtx.lineTo(splashWaveCanvas.width, splashWaveCanvas.height);
+            splashWaveCtx.closePath();
+            splashWaveCtx.fillStyle = 'rgba(121, 40, 202, 0.4)';
+            splashWaveCtx.fill();
+
+            if (document.getElementById('splash-screen') && document.getElementById('splash-screen').style.display !== 'none') {
+                requestAnimationFrame(drawSplashWave);
+            }
+        }
+
+        /* ================= 3. XÁC THỰC CỔNG MASTER KEY ADMIN ================= */
+        const MASTER_ADMIN_KEY = "ONYXZ-ADMIN-VIP";
+
+        function checkMasterKey() {
+            const inputVal = (document.getElementById('adminMasterKeyInput').value || '').trim().toUpperCase();
+            const errEl = document.getElementById('gateErrorMsg');
+
+            if (inputVal === MASTER_ADMIN_KEY) {
+                errEl.style.display = 'none';
+                const gate = document.getElementById('admin-gate-screen');
+                gate.classList.add('hidden');
+                setTimeout(() => {
+                    gate.style.display = 'none';
+                    startSplashScreenAndSystem();
+                }, 500);
+            } else {
+                errEl.style.display = 'block';
+                errEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Master Key không đúng! Vui lòng nhập: <b>${MASTER_ADMIN_KEY}</b>`;
+                document.getElementById('adminMasterKeyInput').style.borderColor = 'var(--neon-red)';
+            }
+        }
+
+        document.getElementById('btnUnlockAdmin').addEventListener('click', checkMasterKey);
+        document.getElementById('adminMasterKeyInput').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') checkMasterKey();
+        });
+
+        document.getElementById('btnPasteGate').addEventListener('click', async () => {
+            try {
+                if (navigator.clipboard) {
+                    const text = await navigator.clipboard.readText();
+                    document.getElementById('adminMasterKeyInput').value = text.trim();
+                } else {
+                    document.getElementById('adminMasterKeyInput').value = MASTER_ADMIN_KEY;
+                }
+            } catch (e) {
+                document.getElementById('adminMasterKeyInput').value = MASTER_ADMIN_KEY;
+            }
+        });
+
+        /* ================= 4. KHỞI CHẠY MÀN HÌNH SÓNG BIỂN 5S SAU KHI NHẬP KEY ================= */
+        function startSplashScreenAndSystem() {
+            const splash = document.getElementById('splash-screen');
+            splash.style.display = 'flex';
+            drawSplashWave();
+
+            let splashTime = 0;
+            const loaderCount = document.getElementById('loaderCount');
+            const splashInterval = setInterval(() => {
+                splashTime += 100;
+                const pct = Math.min(100, Math.floor((splashTime / 5000) * 100));
+                loaderCount.innerText = `INITIALIZING SYSTEM ${pct}%`;
+
+                if (splashTime >= 5000) {
+                    clearInterval(splashInterval);
+                    splash.classList.add('fade-out');
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                        initBackgroundStars();
+                        initDashboardWaves();
+                    }, 800);
+                }
+            }, 100);
+        }
+
+        /* ================= 4. NỀN HẠT SAO & SÓNG BIỂN CHẠY THUYỀN Ở DASHBOARD ================= */
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let stars = [];
+
+        function initBackgroundStars() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            stars = [];
+            for (let i = 0; i < 50; i++) {
+                stars.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    r: Math.random() * 1.8 + 0.6,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35,
+                    alpha: Math.random() * 0.8 + 0.2
+                });
+            }
+            animateStars();
+        }
+
+        function animateStars() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgCtx.fillStyle = '#ffffff';
+
+            stars.forEach(s => {
+                s.x += s.vx;
+                s.y += s.vy;
+                if (s.x < 0) s.x = bgCanvas.width;
+                if (s.x > bgCanvas.width) s.x = 0;
+                if (s.y < 0) s.y = bgCanvas.height;
+                if (s.y > bgCanvas.height) s.y = 0;
+
+                bgCtx.globalAlpha = s.alpha;
+                bgCtx.beginPath();
+                bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                bgCtx.fill();
+            });
+            requestAnimationFrame(animateStars);
+        }
+
+        // Sóng biển uốn lượn ở nền backend
+        const dashWaveCanvas = document.getElementById('dashboardWaveCanvas');
+        const dashWaveCtx = dashWaveCanvas.getContext('2d');
+        let dashWaveStep = 0;
+
+        function initDashboardWaves() {
+            dashWaveCanvas.width = window.innerWidth;
+            dashWaveCanvas.height = 140;
+            animateDashboardWaves();
+        }
+
+        function animateDashboardWaves() {
+            dashWaveCtx.clearRect(0, 0, dashWaveCanvas.width, dashWaveCanvas.height);
+            dashWaveStep += 0.035;
+
+            // Sóng nước 1
+            dashWaveCtx.beginPath();
+            dashWaveCtx.moveTo(0, dashWaveCanvas.height);
+            for (let x = 0; x <= dashWaveCanvas.width; x += 3) {
+                const y = Math.sin(x * 0.015 + dashWaveStep) * 14 + Math.cos(x * 0.02 + dashWaveStep * 0.7) * 8 + 50;
+                dashWaveCtx.lineTo(x, y);
+            }
+            dashWaveCtx.lineTo(dashWaveCanvas.width, dashWaveCanvas.height);
+            dashWaveCtx.closePath();
+            dashWaveCtx.fillStyle = 'rgba(0, 242, 254, 0.22)';
+            dashWaveCtx.fill();
+
+            // Sóng nước 2
+            dashWaveCtx.beginPath();
+            dashWaveCtx.moveTo(0, dashWaveCanvas.height);
+            for (let x = 0; x <= dashWaveCanvas.width; x += 3) {
+                const y = Math.sin(x * 0.018 - dashWaveStep * 0.8) * 16 + Math.cos(x * 0.012 + dashWaveStep) * 10 + 65;
+                dashWaveCtx.lineTo(x, y);
+            }
+            dashWaveCtx.lineTo(dashWaveCanvas.width, dashWaveCanvas.height);
+            dashWaveCtx.closePath();
+            dashWaveCtx.fillStyle = 'rgba(121, 40, 202, 0.28)';
+            dashWaveCtx.fill();
+
+            requestAnimationFrame(animateDashboardWaves);
+        }
+
+        /* ================= 5. TẠO KEY ================= */
+        let selectedDuration = '1_day';
+        let selectedDurationName = '1 Ngày';
+
+        document.querySelectorAll('.duration-grid .btn-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.duration-grid .btn-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedDuration = btn.getAttribute('data-duration');
+                selectedDurationName = btn.getAttribute('data-name');
+            });
+        });
+
+        document.getElementById('btnGenerateKey').addEventListener('click', () => {
+            const countInput = parseInt(document.getElementById('inputKeyCount').value) || 1;
+            const maxDevInput = parseInt(document.getElementById('inputMaxDevices').value) || 1;
+
+            const totalKeys = Math.max(1, Math.min(50, countInput));
+            const maxDevices = Math.max(1, maxDevInput);
+
+            const singleBox = document.getElementById('singleKeyBox');
+            const batchBox = document.getElementById('batchKeyBox');
+            const now = new Date();
+            const timeStr = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'});
+            const durationSec = getDurationSeconds(selectedDuration);
+
+            let batch = [];
+            for (let i = 0; i < totalKeys; i++) {
+                let k = generateSingleOnyxzKey();
+                while (keyDatabase.some(item => item.key === k) || batch.includes(k)) {
+                    k = generateSingleOnyxzKey();
+                }
+                batch.push(k);
+
+                keyDatabase.unshift({
+                    key: k,
+                    duration: selectedDuration,
+                    durationName: selectedDurationName,
+                    durationSeconds: durationSec,
+                    remainingSeconds: durationSec,
+                    maxDevices: maxDevices,
+                    usedDevices: 0,
+                    status: 'active', // active, paused, expired, revoked
+                    firstActivatedAt: null,
+                    createdAt: timeStr,
+                    timestamp: Date.now()
+                });
+            }
+
+            saveLocalData();
+
+            if (totalKeys === 1) {
+                singleBox.style.display = 'flex';
+                batchBox.style.display = 'none';
+                document.getElementById('singleKeyText').innerText = batch[0];
+                showToast(`Đã tạo key: ${batch[0]}`);
+            } else {
+                singleBox.style.display = 'none';
+                batchBox.style.display = 'block';
+                document.getElementById('batchCountBadge').innerText = totalKeys;
+                document.getElementById('batchKeyText').value = batch.join('\n');
+                showToast(`Đã tạo thành công ${totalKeys} key!`);
+            }
+
+            syncToServer(batch, selectedDuration, selectedDurationName, maxDevices);
+        });
+
+        document.getElementById('btnCopySingle').addEventListener('click', () => {
+            copyText(document.getElementById('singleKeyText').innerText);
+            showToast('Đã sao chép mã Key!');
+        });
+
+        document.getElementById('btnCopyBatch').addEventListener('click', () => {
+            const txt = document.getElementById('batchKeyText').value;
+            if (txt) {
+                copyText(txt);
+                showToast('Đã sao chép tất cả key!');
+            }
+        });
+
+        /* ================= 6. RENDER LỊCH SỬ ================= */
+        function renderHistoryTab() {
+            const container = document.getElementById('historyListContainer');
+            document.getElementById('historyTotalText').innerText = `Tổng: ${keyDatabase.length} key`;
+
+            if (keyDatabase.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:35px 10px; color:var(--text-dim); font-size:14px;">
+                        <i class="fa-solid fa-key" style="font-size:32px; margin-bottom:10px; opacity:0.4;"></i><br>
+                        Chưa có key nào. Hãy tạo key ở Tab 1!
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            keyDatabase.forEach(item => {
+                const isRevoked = item.status === 'revoked';
+                const isPaused = item.status === 'paused';
+                const isExpired = item.status === 'expired';
+
+                let statusBadge = '<span class="badge-status badge-active">HOẠT ĐỘNG</span>';
+                if (isRevoked) statusBadge = '<span class="badge-status badge-revoked">ĐÃ XÓA</span>';
+                else if (isPaused) statusBadge = '<span class="badge-status badge-paused">ĐÃ RESET (TẠM DỪNG)</span>';
+                else if (isExpired) statusBadge = '<span class="badge-status badge-expired">HẾT HẠN</span>';
+
+                html += `
+                    <div class="key-item-card ${isRevoked ? 'revoked' : ''} ${isPaused ? 'paused' : ''}">
+                        <div class="key-item-header">
+                            <span class="key-text" style="font-size:15px;">${item.key}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="key-details">
+                            <span>Thời hạn: <b>${item.durationName}</b></span>
+                            <span>Thiết bị: <b>${item.usedDevices}/${item.maxDevices} máy</b></span>
+                            <span>Ngày tạo: <b>${item.createdAt}</b></span>
+                            <span>Trạng thái: <b>${isRevoked ? 'Đã vô hiệu hóa' : (isPaused ? 'Đã đóng băng' : (isExpired ? 'Hết hạn' : 'Đang hoạt động'))}</b></span>
+                        </div>
+                        <div class="key-item-actions">
+                            <button class="btn-item btn-copy-item" onclick="copyText('${item.key}')">
+                                <i class="fa-regular fa-copy"></i> Sao chép
+                            </button>
+                            ${!isRevoked ? `
+                                <button class="btn-item btn-delete-item" onclick="revokeKey('${item.key}')">
+                                    <i class="fa-solid fa-ban"></i> Xóa Key
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        /* ================= 7. RENDER KIỂM TRA & COUNTDOWN LIVE ================= */
+        function renderCheckTab() {
+            const container = document.getElementById('checkListContainer');
+            const search = (document.getElementById('searchKeyInput').value || '').trim().toUpperCase();
+
+            let list = keyDatabase;
+            if (search) list = keyDatabase.filter(k => k.key.toUpperCase().includes(search));
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:35px 10px; color:var(--text-dim); font-size:14px;">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size:32px; margin-bottom:10px; opacity:0.4;"></i><br>
+                        Không tìm thấy key phù hợp!
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            list.forEach(item => {
+                const isRevoked = item.status === 'revoked';
+                const isPaused = item.status === 'paused';
+                const isExpired = item.status === 'expired';
+                const isFull = item.usedDevices >= item.maxDevices;
+                const isLifetime = item.duration === 'lifetime';
+
+                let badge = '<span class="badge-status badge-active">HOẠT ĐỘNG</span>';
+                if (isRevoked) badge = '<span class="badge-status badge-revoked">ĐÃ XÓA</span>';
+                else if (isPaused) badge = '<span class="badge-status badge-paused">⚡ ĐÃ RESET</span>';
+                else if (isExpired) badge = '<span class="badge-status badge-expired">HẾT HẠN (00:00)</span>';
+                else if (isFull) badge = `<span class="badge-status badge-full">ĐẦY LƯỢT (${item.usedDevices}/${item.maxDevices})</span>`;
+
+                const pct = Math.min(100, Math.round((item.usedDevices / item.maxDevices) * 100));
+
+                // Hiển thị đồng hồ đếm ngược
+                let countdownText = 'Vĩnh Viễn';
+                let countdownClass = '';
+
+                if (!isLifetime) {
+                    if (isPaused) {
+                        countdownText = `Tạm dừng tại: ${formatDuration(item.pausedRemainingSeconds || item.remainingSeconds)}`;
+                        countdownClass = 'paused';
+                    } else if (isExpired) {
+                        countdownText = '00:00:00 (Key đã tự hủy)';
+                        countdownClass = 'expired';
+                    } else if (item.firstActivatedAt) {
+                        countdownText = formatDuration(item.remainingSeconds);
+                    } else {
+                        countdownText = `Chưa kích hoạt (${formatDuration(item.durationSeconds)})`;
+                    }
+                }
+
+                html += `
+                    <div class="key-item-card ${isRevoked ? 'revoked' : ''} ${isPaused ? 'paused' : ''} ${isExpired ? 'expired' : ''}">
+                        <div class="key-item-header">
+                            <span class="key-text" style="font-size:16px;">${item.key}</span>
+                            ${badge}
+                        </div>
+
+                        <!-- ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC -->
+                        <div class="countdown-timer-box">
+                            <span class="countdown-title">
+                                <i class="fa-regular fa-clock"></i> Thời Gian Còn Lại:
+                            </span>
+                            <span class="countdown-digits ${countdownClass}" id="timer-${item.key}">
+                                ${countdownText}
+                            </span>
+                        </div>
+
+                        <!-- THANH ĐO THIẾT BỊ -->
+                        <div class="device-progress-wrap">
+                            <div class="progress-header">
+                                <span style="color:var(--text-dim); font-size:12px;">Thiết bị đã kết nối:</span>
+                                <span style="color:${isFull ? 'var(--neon-amber)' : 'var(--neon-blue)'}; font-family:'JetBrains Mono'; font-weight:800;">
+                                    ${item.usedDevices} / ${item.maxDevices} máy (${pct}%)
+                                </span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill ${isFull ? 'full' : ''}" style="width: ${pct}%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="key-details">
+                            <span>Gói: <b>${item.durationName}</b></span>
+                            <span>Tạo lúc: <b>${item.createdAt}</b></span>
+                        </div>
+
+                        <div class="key-item-actions">
+                            <!-- Nút Test Kích hoạt -->
+                            ${!isRevoked && !isExpired && !isFull ? `
+                                <button class="btn-item btn-test-activate" onclick="simulateDeviceActivation('${item.key}')">
+                                    <i class="fa-solid fa-mobile-screen"></i> Test Khách Nhập
+                                </button>
+                            ` : ''}
+
+                            <!-- Nút Reset Key Nhanh (chỉ cho key có thời hạn) -->
+                            ${!isLifetime && !isRevoked && !isExpired ? `
+                                <button class="btn-item btn-reset-action" onclick="quickResetKey('${item.key}')">
+                                    <i class="fa-solid fa-rotate-left"></i> Reset Key
+                                </button>
+                            ` : ''}
+
+                            ${!isRevoked ? `
+                                <button class="btn-item btn-delete-item" onclick="revokeKey('${item.key}')">
+                                    <i class="fa-solid fa-trash-can"></i> Xóa
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        document.getElementById('searchKeyInput').addEventListener('input', renderCheckTab);
+
+        /* ================= 8. HỆ THỐNG ĐẾM NGƯỢC THỜI GIAN THỰC (INTERVAL MỖI GIÂY) ================= */
+        setInterval(() => {
+            let needsRender = false;
+            const now = Date.now();
+
+            keyDatabase.forEach(item => {
+                // Key vĩnh viễn, đã xóa, đã hết hạn, hoặc đang tạm dừng thì không đếm tiếp
+                if (item.duration === 'lifetime' || item.status === 'revoked' || item.status === 'expired' || item.status === 'paused') {
+                    return;
+                }
+
+                // Nếu khách đã kích hoạt
+                if (item.firstActivatedAt) {
+                    const elapsed = Math.floor((now - item.firstActivatedAt) / 1000);
+                    const remaining = Math.max(0, item.durationSeconds - elapsed);
+                    item.remainingSeconds = remaining;
+
+                    // Nếu đếm về 0: TỰ ĐỘNG HỦY VÀ KHÓA KEY
+                    if (remaining <= 0) {
+                        item.status = 'expired';
+                        needsRender = true;
+                    }
+
+                    // Cập nhật text đồng hồ trên màn hình nếu đang hiển thị
+                    const timerEl = document.getElementById(`timer-${item.key}`);
+                    if (timerEl) {
+                        timerEl.innerText = formatDuration(remaining);
+                    }
+                }
+            });
+
+            if (needsRender) {
+                saveLocalData();
+            }
+        }, 1000);
+
+        /* ================= 9. XỬ LÝ RESET KEY (TẠM DỪNG & ĐÓNG BĂNG) ================= */
+        function executeResetKey(key) {
+            key = key.trim().toUpperCase();
+            if (!key) {
+                alert('Vui lòng nhập mã Key cần reset!');
+                return;
+            }
+
+            const target = keyDatabase.find(k => k.key === key);
+            if (!target) {
+                alert(`Không tìm thấy mã key ${key} trên hệ thống!`);
+                return;
+            }
+
+            // Quy định: Key Vĩnh Viễn không reset được
+            if (target.duration === 'lifetime') {
+                alert('⚠️ Key VĨNH VIỄN không có thời hạn đếm ngược nên KHÔNG CẦN RESET!');
+                return;
+            }
+
+            if (target.status === 'revoked') {
+                alert('⚠️ Key này đã bị Xóa / Thu hồi, không thể reset!');
+                return;
+            }
+
+            if (target.status === 'expired') {
+                alert('⚠️ Key này đã đếm ngược về 0 (hết hạn), không thể reset!');
+                return;
+            }
+
+            // ĐÓNG BĂNG THỜI GIAN TẠI GIÂY HIỆN TẠI
+            let remaining = target.remainingSeconds || target.durationSeconds;
+            target.status = 'paused';
+            target.isPaused = true;
+            target.pausedRemainingSeconds = remaining;
+            target.usedDevices = 0; // Reset lại số máy để khách nhập lại
+            target.registeredDevices = [];
+            target.firstActivatedAt = null;
+
+            saveLocalData();
+
+            // Hiển thị kết quả ra box
+            const resBox = document.getElementById('resetResultBox');
+            const resMsg = document.getElementById('resetResultMsg');
+            resBox.style.display = 'block';
+            resMsg.innerHTML = `
+                Mã Key: <b>${key}</b><br>
+                Đã đóng băng tại: <b style="color:var(--neon-amber);">${formatDuration(remaining)}</b>.<br>
+                Trạng thái tại Tab Kiểm Tra: <span class="badge-status badge-paused">ĐÃ RESET</span><br>
+                <i style="color:var(--text-dim);">Khi khách nhập lại key vào Menu trên máy, thời gian sẽ tiếp tục đếm tiếp từ mốc này.</i>
+            `;
+
+            showToast(`Đã reset key ${key}! Tạm dừng tại: ${formatDuration(remaining)}`);
+
+            // Gửi lên API backend
+            fetch(`../api/onyxz_keys.php?action=reset_key&key=${key}`).catch(e => {});
+        }
+
+        document.getElementById('btnExecuteReset').addEventListener('click', () => {
+            const key = document.getElementById('resetKeyInput').value;
+            executeResetKey(key);
+        });
+
+        window.quickResetKey = function(key) {
+            executeResetKey(key);
+        };
+
+        /* ================= 10. TEST KÍCH HOẠT & XÓA KEY ================= */
+        window.simulateDeviceActivation = function(key) {
+            const target = keyDatabase.find(k => k.key === key);
+            if (!target) return;
+
+            if (target.status === 'revoked') {
+                alert('Key đã bị xóa!');
+                return;
+            }
+
+            if (target.status === 'expired') {
+                alert('Key đã hết thời gian sử dụng!');
+                return;
+            }
+
+            if (target.usedDevices >= target.maxDevices) {
+                alert(`Đã đủ ${target.usedDevices}/${target.maxDevices} máy! Không thể nhập thêm.`);
+                return;
+            }
+
+            // Nếu key đang bị paused (reset): khách nhập lại -> Tiếp tục đếm!
+            if (target.status === 'paused') {
+                target.status = 'active';
+                target.firstActivatedAt = Date.now();
+                target.durationSeconds = target.pausedRemainingSeconds;
+                target.isPaused = false;
+                showToast(`Khách đã nhập lại! Tiếp tục đếm ngược từ ${formatDuration(target.durationSeconds)}`);
+            } else if (!target.firstActivatedAt) {
+                // Lần đầu kích hoạt: Bắt đầu đếm ngược
+                target.firstActivatedAt = Date.now();
+            }
+
+            target.usedDevices++;
+            saveLocalData();
+            showToast(`1 Máy vừa nhập key! Hiện tại: ${target.usedDevices}/${target.maxDevices} máy`);
+        };
+
+        window.revokeKey = function(key) {
+            if (confirm(`Bạn có chắc chắn muốn XÓA / THU HỒI key ${key}?\nSau khi xóa, key sẽ bị hủy vĩnh viễn!`)) {
+                const target = keyDatabase.find(k => k.key === key);
+                if (target) {
+                    target.status = 'revoked';
+                    saveLocalData();
+                    showToast(`Đã xóa key ${key}!`);
+                    fetch(`../api/onyxz_keys.php?action=revoke_key&key=${key}`).catch(e => {});
+                }
+            }
+        };
+
+        /* ================= 11. TAB 5: MENU API ================= */
+        function getApiBaseUrl() {
+            const inputVal = (document.getElementById('customDomainInput')?.value || '').trim();
+            if (inputVal) return inputVal.replace(/\/+$/, '');
+            if (window.location.origin && window.location.origin !== 'null' && !window.location.origin.startsWith('file:')) {
+                return window.location.origin;
+            }
+            return "https://your-server.com";
+        }
+
+        function updateApiUrlBox() {
+            const base = getApiBaseUrl();
+            document.getElementById('apiUrlBox').innerText = `${base}/api/onyxz_keys.php?action=verify&key=KEY_CUA_KHACH&hwid=MA_MAY_HWID`;
+            showMenuCode(currentLang);
+        }
+
+        function getMenuTemplate(lang) {
+            const base = getApiBaseUrl();
+            if (lang === 'lua') {
+                return `-- ==========================================
+-- ROBLOX DELTA / LUAU SCRIPT XÁC THỰC KEY
+-- ==========================================
+local HttpService = game:GetService("HttpService")
+local inputKey = "ONYXZ-XXXXXXXXXX"
+local myHWID = game:GetService("RbxAnalyticsService"):GetClientId()
+
+local apiUrl = "${base}/api/onyxz_keys.php?action=verify&key=" .. inputKey .. "&hwid=" .. myHWID
+local response = game:HttpGet(apiUrl)
+local data = HttpService:JSONDecode(response)
+
+if data.status == "success" then
+    print("✅ KEY HỢP LỆ! Còn lại: " .. data.remaining_formatted)
+    -- [MỞ MENU CHO KHÁCH TẠI ĐÂY]
+else
+    warn("❌ KHÓA MENU: " .. data.message)
+end`;
+            } else {
+                return `// ==========================================
+// C++ / IMGUI MENU AUTHENTICATION (libcurl)
+// ==========================================
+#include <iostream>
+#include <string>
+#include <curl/curl.h>
+
+bool VerifyKeyWithOnyxzServer(const std::string& key, const std::string& hwid) {
+    CURL* curl = curl_easy_init();
+    if (!curl) return false;
+    std::string url = "${base}/api/onyxz_keys.php?action=verify&key=" + key + "&hwid=" + hwid;
+    std::string response;
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    CURLcode res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    return (res == CURLE_OK && response.find("\"status\":\"success\"") != std::string::npos);
+}`;
+            }
+        }
+
+        let currentLang = 'lua';
+        window.showMenuCode = function(lang) {
+            currentLang = lang;
+            document.getElementById('menuCodeSnippet').innerText = getMenuTemplate(lang);
+        };
+        showMenuCode('lua');
+
+        window.copyMenuCode = function() {
+            copyText(getMenuTemplate(currentLang));
+            showToast('Đã sao chép mã nguồn vào Menu!');
+        };
+
+        document.getElementById('btnCopyApiUrl').addEventListener('click', () => {
+            copyText(document.getElementById('apiUrlBox').innerText);
+            showToast('Đã sao chép đường link API!');
+        });
+
+        /* ================= 12. CHUYỂN TAB ================= */
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+                item.classList.add('active');
+                const targetTab = item.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+
+                if (targetTab === 'tab-history') renderHistoryTab();
+                if (targetTab === 'tab-check') renderCheckTab();
+                if (targetTab === 'tab-api') updateApiUrlBox();
+            });
+        });
+
+        /* ================= TIỆN ÍCH ================= */
+        function copyText(str) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(str);
+            } else {
+                const ta = document.createElement("textarea");
+                ta.value = str;
+                ta.style.position = "fixed";
+                ta.style.left = "-999999px";
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+
+        function syncToServer(keys, duration, durationName, maxDevices) {
+            fetch('../api/onyxz_keys.php?action=save_keys', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    keys: keys,
+                    duration: duration,
+                    duration_name: durationName,
+                    max_devices: maxDevices
+                })
+            }).catch(e => {});
+        }
+
+        loadLocalData();
+        updateApiUrlBox();
+    </script>
+</body>
+</html>
