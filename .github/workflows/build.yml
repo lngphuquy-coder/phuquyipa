@@ -1,0 +1,42 @@
+name: Build OnyxzKeygen IPA for ESign
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Compile C++ / Objective-C++ to iOS ARM64 Binary
+        run: |
+          mkdir -p Payload/OnyxzKeygen.app
+          
+          # Biên dịch mã nguồn C++ / Objective-C++
+          xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=14.0 \
+            -std=c++17 \
+            -framework UIKit -framework Foundation -framework WebKit \
+            src/main.mm \
+            -o Payload/OnyxzKeygen.app/OnyxzKeygen
+            
+          # Copy các file cấu hình, giao diện HTML và Icon vào thư mục app
+          cp Info.plist Payload/OnyxzKeygen.app/
+          if [ -f "index.html" ]; then
+            cp index.html Payload/OnyxzKeygen.app/
+          fi
+          cp -f *.png Payload/OnyxzKeygen.app/ 2>/dev/null || true
+
+      - name: Package Payload into IPA
+        run: |
+          zip -r OnyxzKeygen.ipa Payload/
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OnyxzKeygen-IPA
+          path: OnyxzKeygen.ipa
